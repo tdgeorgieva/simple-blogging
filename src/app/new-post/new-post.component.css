@@ -1,0 +1,11 @@
+h1 {
+    color:lightblue;
+    width: 400px;
+    text-align: center;
+}
+.form {
+    background-color:#DDBDF1;
+    width: 400px;
+    display: inline-block;
+    text-align: center;
+}
