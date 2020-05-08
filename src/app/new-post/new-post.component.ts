@@ -1,19 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup, ValidationErrors, AbstractControl } from '@angular/forms';
 
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {MatChipInputEvent} from '@angular/material/chips';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material/chips';
 
 export interface Tags {
   name: string;
 }
-export interface Tile {
-  color: string;
-  cols: number;
-  rows: number;
-  text: string;
-}
-
 @Component({
   selector: 'app-new-post',
   templateUrl: './new-post.component.html',
@@ -28,7 +21,7 @@ export class NewPostComponent implements OnInit {
   text: string;
   tags: string;
   status: boolean;
-  image: string;
+  imageUrl: string;
 
   visible = true;
   selectable = true;
@@ -37,22 +30,15 @@ export class NewPostComponent implements OnInit {
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   tagWords: Tags[] = [];
 
-  tiles: Tile[] = [
-    {text: 'One', cols: 2, rows: 1, color: 'lightblue'},
-    {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
-  ];
-
 
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
 
-    // Add our fruit
     if ((value || '').trim()) {
-      this.tagWords.push({name: value.trim()});
+      this.tagWords.push({ name: value.trim() });
     }
 
-    // Reset the input value
     if (input) {
       input.value = '';
     }
@@ -79,14 +65,24 @@ export class NewPostComponent implements OnInit {
     console.warn(this.postForm.value);
   }
 
-
   ngOnInit(): void {
     this.postForm = new FormGroup({
-      title: new FormControl (this.title, Validators.required),
-      author: new FormControl (this.author, Validators.required),
-      text: new FormControl (this.text, Validators.required ),
-      tags: new FormControl (this.tags, Validators.required ),
-      image: new FormControl (this.image, Validators.required )
+      date: new FormControl(this.date, Validators.required),
+      title: new FormControl(this.title, [
+        Validators.required,
+        Validators.maxLength(15),
+        Validators.minLength(2)
+      ]),
+      author: new FormControl(this.author, [
+        Validators.required,
+        Validators.maxLength(20)
+      ]),
+      text: new FormControl (this.text, Validators.required),
+      tags: new FormControl(this.tags, Validators.required),
+      imageUrl: new FormControl(this.imageUrl,
+        [
+          Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')
+        ])
     });
   }
 
