@@ -2,9 +2,6 @@
 
     <mat-grid-tile>
         <h1>Add new post</h1>
-
-
-
         <div class="form">
             <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
 
@@ -14,7 +11,7 @@
                     <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
                     <mat-datepicker #dp3 disabled="false"></mat-datepicker>
                 </mat-form-field>
-
+                <br>
                 <mat-form-field appearance="legacy">
                     <mat-label>Title</mat-label>
                     <input required matInput formControlName="title">
@@ -59,21 +56,7 @@
                         Text is required.
                     </mat-error>
                 </div>
-
-                <mat-form-field appearance="legacy">
-                    <mat-label>Image</mat-label>
-                    <input matInput formControlName="imageUrl">
-                </mat-form-field>
-                <div
-                    *ngIf="postFormControl.imageUrl.invalid && (postFormControl.imageUrl.dirty || postFormControl.imageUrl.touched)">
-                    <mat-error *ngIf="postFormControl.imageUrl.errors?.pattern">
-                        Image URL should be valid (ex. http://example.com/image/path.jpeg).
-                    </mat-error>
-                </div>
                 <br>
-
-
-
                 <mat-form-field>
                     <mat-chip-list #tagList>
                         <mat-chip *ngFor="let tag of tagWords" [selectable]="selectable" [removable]="removable"
@@ -94,13 +77,26 @@
                 </div>
                 <br>
 
+                <mat-form-field appearance="legacy">
+                    <mat-label>Image</mat-label>
+                    <input matInput formControlName="imageUrl">
+                </mat-form-field>
+                <div
+                    *ngIf="postFormControl.imageUrl.invalid && (postFormControl.imageUrl.dirty || postFormControl.imageUrl.touched)">
+                    <mat-error *ngIf="postFormControl.imageUrl.errors?.pattern">
+                        Image URL should be valid (ex. http://example.com/image/path.jpeg).
+                    </mat-error>
+                </div>
+                <br>
+                <mat-slide-toggle  [checked]="checked" >
+                    <mat-label>Status</mat-label>
+                    (Active)
+                </mat-slide-toggle>
+                <br>
                 <button mat-raised-button color="primary">Submit</button>
                 <button mat-raised-button color="warn">Cancel</button>
 
             </form>
         </div>
-       
-
     </mat-grid-tile>
-
 </mat-grid-list>
