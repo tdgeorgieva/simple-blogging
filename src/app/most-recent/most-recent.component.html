@@ -1,0 +1,12 @@
+<p>most-recent works!</p>
+<mat-card class="card">
+    <mat-card-title class="title">Recent Posts</mat-card-title>
+    <mat-card-content>
+        <div class="posts" *ngFor="let post of allPosts">
+            <span class="span">{{ post.title }}</span>
+        </div>
+        <br>
+        
+        
+    </mat-card-content>
+</mat-card>

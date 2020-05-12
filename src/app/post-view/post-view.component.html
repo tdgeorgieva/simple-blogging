@@ -1,0 +1,19 @@
+<p>post-view works!</p>
+
+<mat-card class="card">
+    <mat-card-title class="title">{{ post.title }}</mat-card-title>
+    <mat-card-subtitle>{{ post.author }}</mat-card-subtitle>
+    <mat-card-content>
+        <div class="text">
+            {{post.text}}
+        </div>
+        <div class="bottom">
+            
+            <span>{{ post.date }}</span>
+        </div>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-icon-button color="primary" >
+            <mat-icon class="icon" routerLink="/all-posts">keyboard_backspace</mat-icon></button>
+    </mat-card-actions>
+</mat-card>

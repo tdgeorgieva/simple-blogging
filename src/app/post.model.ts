@@ -1,6 +1,3 @@
-export enum Status {
-    Active, Inactive
-}
 export type IdType = number;
 export interface Identifiable {
     id: IdType;
@@ -11,24 +8,24 @@ export class Post implements Identifiable {
     title: string;
     author: string;
     text: string;
-    status: Status;
+    status: boolean;
     imageURL?: string;
-    tags?: string[];
-    constructor(id: IdType,
+    tags: string[];
+    constructor(
                 date: Date,
                 title: string,
                 author: string,
-                content: string,
-                status: Status,
+                text: string,
+                status: boolean,
+                tags: string[],
                 imageURL?: string,
-                keywords?: string[]) {
-        this.id = id;
+               ) {
         this.date = date;
         this.title = title;
         this.author = author;
-        this.text = content;
-        this.status = status;
+        this.text = text;
+        this.tags = tags;
         this.imageURL = imageURL;
-        this.tags = keywords;
+        this.status = status;
     }
 }

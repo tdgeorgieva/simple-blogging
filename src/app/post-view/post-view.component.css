@@ -4,32 +4,22 @@
     color: rgb(167, 105, 224);
     font-weight: normal;
     text-align: center;
+    font-family: "Apple Chancery", cursive;
 }
-.form {
+.card {
     background-color: #ddbdf1;
     width: 400px;
     display: inline-block;
     text-align: center;
+    margin: 2%;
 }
-.btn {
-    margin: 5px;
+.text {
+    width: 400px;
     background-color: bisque;
     color: rgb(167, 105, 224);
     font-weight: normal;
+    
 }
-.list {
-    background-color: bisque;
-    color: rgb(167, 105, 224);
-    text-align: left;
-    width: 360px;
-    list-style-type: none;
-}
-ul li {
-    margin: 5px;
-}
-.first {
-    margin: 5%;
-}
-.label {
-    color: blueviolet;
+.icon {
+    float: left;
 }

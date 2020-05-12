@@ -1,24 +1,24 @@
-<mat-grid-list cols="2">
-
-    <mat-grid-tile>
-        <h1>Add new post</h1>
+<mat-card class="card">
+    <mat-card-title class="title">Add new post</mat-card-title>
+    <mat-card-content>
         <div class="form">
+           
             <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
 
-                <mat-form-field>
-                    <mat-label>Pick date</mat-label>
-                    <input matInput [matDatepicker]="dp3" formControlName="date" disabled>
+                <mat-form-field class="first">
+                    <mat-label  class="label">Pick date</mat-label>
+                    <input required matInput [matDatepicker]="dp3" formControlName="date" disabled>
                     <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
                     <mat-datepicker #dp3 disabled="false"></mat-datepicker>
                 </mat-form-field>
                 <br>
                 <mat-form-field appearance="legacy">
-                    <mat-label>Title</mat-label>
+                    <mat-label class="label">Title</mat-label>
                     <input required matInput formControlName="title">
                 </mat-form-field>
                 <br>
                 <div
-                    *ngIf="postFormControl.title.invalid && (postFormControl.title.dirty || postFormControl.title.touched)">
+                   *ngIf="postFormControl.title.invalid && (postFormControl.title.dirty || postFormControl.title.touched)">
                     <mat-error *ngIf="postFormControl.title.errors?.required">
                         Title is required.
                     </mat-error>
@@ -31,7 +31,7 @@
                 </div>
 
                 <mat-form-field appearance="legacy">
-                    <mat-label>Author</mat-label>
+                    <mat-label class="label">Author</mat-label>
                     <input required matInput formControlName="author">
                 </mat-form-field>
                 <br>
@@ -46,7 +46,7 @@
                 </div>
 
                 <mat-form-field appearance="legacy">
-                    <mat-label>Text</mat-label>
+                    <mat-label class="label">Text</mat-label>
                     <textarea required matInput formControlName="text"></textarea>
                 </mat-form-field>
                 <br>
@@ -61,24 +61,19 @@
                     <mat-chip-list #tagList>
                         <mat-chip *ngFor="let tag of tagWords" [selectable]="selectable" [removable]="removable"
                             (removed)="remove(tag)">
-                            {{tag.name}}
+                            {{tag}}
                             <mat-icon svgIcon="clear" matChipRemove *ngIf="removable">x</mat-icon>
                         </mat-chip>
-                        <input placeholder="Tags..." [matChipInputFor]="tagList"
+                        <input class="label" placeholder="Tags..." [matChipInputFor]="tagList"
                             [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
                             (matChipInputTokenEnd)="add($event)" formControlName="tags">
                     </mat-chip-list>
                 </mat-form-field>
-                <div
-                    *ngIf="postFormControl.tags.invalid && (postFormControl.tags.dirty || postFormControl.tags.touched)">
-                    <mat-error *ngIf="postFormControl.tags.errors?.required">
-                        Tags are required.
-                    </mat-error>
-                </div>
+
                 <br>
 
                 <mat-form-field appearance="legacy">
-                    <mat-label>Image</mat-label>
+                    <mat-label class="label">Image</mat-label>
                     <input matInput formControlName="imageUrl">
                 </mat-form-field>
                 <div
@@ -88,15 +83,25 @@
                     </mat-error>
                 </div>
                 <br>
-                <mat-slide-toggle  [checked]="checked" >
-                    <mat-label>Status</mat-label>
+                <mat-slide-toggle [checked]="checked" formControlName="status">
+                    <mat-label  class="label">Status</mat-label>
                     (Active)
                 </mat-slide-toggle>
                 <br>
-                <button mat-raised-button color="primary">Submit</button>
-                <button mat-raised-button color="warn">Cancel</button>
+                <button class="btn" mat-raised-button color="primary" [disabled]="!postForm.valid">Submit</button>
+                <button class="btn" mat-raised-button color="warn">Cancel</button>
 
             </form>
         </div>
-    </mat-grid-tile>
-</mat-grid-list>
+    </mat-card-content>
+</mat-card>
+<mat-card>
+    <mat-card-title class="title">New posts</mat-card-title>
+    <mat-card-content>
+         <ul class="list">
+            <li *ngFor="let post of this.posts"  routerLink="/post/{{post.id}}">
+                {{ post.title }}
+            </li>
+        </ul>
+    </mat-card-content>
+</mat-card>

@@ -5,31 +5,26 @@
     font-weight: normal;
     text-align: center;
 }
-.form {
+.card {
     background-color: #ddbdf1;
     width: 400px;
     display: inline-block;
     text-align: center;
+    margin: 2%;
 }
-.btn {
-    margin: 5px;
-    background-color: bisque;
-    color: rgb(167, 105, 224);
-    font-weight: normal;
-}
-.list {
+.posts {
     background-color: bisque;
     color: rgb(167, 105, 224);
     text-align: left;
-    width: 360px;
+    width: 400px;
     list-style-type: none;
+    margin-top: 3%;
+    font-size: 120%;
+    
 }
-ul li {
-    margin: 5px;
+.icon {
+    color: rgb(167, 105, 224);
 }
-.first {
-    margin: 5%;
-}
-.label {
-    color: blueviolet;
+.span {
+    margin: 3%;
 }
