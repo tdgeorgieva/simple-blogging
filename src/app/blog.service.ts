@@ -24,10 +24,6 @@ export class BlogService {
   findById(id: IdType): Post | undefined {
     return this.posts.find(e => e.id === id);
   }
-  // findLast15() {
-  //   arr.sort((a,b) => new Date(a.updated_at).getTime() - new Date(b.updated_at).getTime());
-
-  // }
   create(post: Post) {
     console.log(BlogService.nextId);
     post.id = ++BlogService.nextId;

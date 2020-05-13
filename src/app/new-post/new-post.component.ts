@@ -61,7 +61,7 @@ export class NewPostComponent implements OnInit {
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.warn(this.postForm.value);
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = +this.route.snapshot.paramMap.get('id');
     const post = new Post(
       new Date(this.postForm.controls.date.value),
       this.postForm.controls.title.value,
@@ -75,6 +75,7 @@ export class NewPostComponent implements OnInit {
     console.log(post);
 
     if (id) {
+      post.id = id;
       this.blogService.update(post);
 
     } else {

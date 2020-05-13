@@ -12,6 +12,14 @@ export class MostRecentComponent implements OnInit {
 
   constructor(private blogService: BlogService) { }
 
+  get recentPosts() {
+    console.log(typeof this.blogService.findAll()[0].date);
+    return this.blogService.findAll()
+    .sort(function(a, b)
+    {return new Date(b.date).getTime() - new Date(a.date).getTime()})
+    .slice(0, 15);
+  }
+
   ngOnInit(): void {
   }
 

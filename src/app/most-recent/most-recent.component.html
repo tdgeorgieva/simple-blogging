@@ -2,8 +2,10 @@
 <mat-card class="card">
     <mat-card-title class="title">Recent Posts</mat-card-title>
     <mat-card-content>
-        <div class="posts" *ngFor="let post of allPosts">
-            <span class="span">{{ post.title }}</span>
+        <div class="posts" *ngFor="let post of recentPosts">
+            <span >{{ post.title }}</span>
+            <span >{{ post.date }}</span>
+            <p>{{ post.text.substring(0,9) }}</p>
         </div>
         <br>
         
