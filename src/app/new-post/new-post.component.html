@@ -57,8 +57,10 @@
 
                 <mat-form-field appearance="legacy">
                     <mat-label class="label">Text</mat-label>
-                    <textarea required matInput formControlName="text"></textarea>
+                    <textarea  required matInput markdown formControlName="text"></textarea>
                 </mat-form-field>
+                <markdown [data]=" postFormControl.text.value">               
+                </markdown>
                 <br>
                 <div
                     *ngIf="postFormControl.text.invalid && (postFormControl.text.dirty || postFormControl.text.touched)">
@@ -93,7 +95,7 @@
                     </mat-error>
                 </div>
                 <br>
-                <mat-slide-toggle  formControlName="status">
+                <mat-slide-toggle [checked]='postFormControl.status.value === true ' formControlName="status">
                     <mat-label  class="label">Status</mat-label>
                     (Active)
                 </mat-slide-toggle>

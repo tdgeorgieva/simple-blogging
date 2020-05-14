@@ -20,6 +20,6 @@ export class PostViewComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     console.log(id);
     this.post = this.blogService.findById(id);
+    console.log(this.post);
   }
-
 }

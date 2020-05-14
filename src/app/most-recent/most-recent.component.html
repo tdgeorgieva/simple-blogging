@@ -28,14 +28,12 @@
     </mat-form-field>
 
     <div class="posts" *ngFor="let post of this.filteredPosts" routerLink="/post/{{post.id}}">
-      <span>Title: {{ post.title }}</span> <br>
+      <h2>{{ post.title }}</h2> <br>
+      <div><img src="{{ post.imageURL }}"> </div>
       <span>Date: {{ post.date | date:'shortDate' }}</span>
-      <p> Summary : {{ post.text.substring(0,150) }}</p>
+      <p>
+        <markdown [data]="post.text.substring(0,150)"></markdown></p>
     </div>
     <br>
-
-
-
-
   </mat-card-content>
 </mat-card>

@@ -10,19 +10,21 @@
 <mat-card class="card">
     <mat-card-title class="title">{{ post.title }}</mat-card-title>
     <mat-card-subtitle>{{ post.author }}</mat-card-subtitle>
+    <div> <img src="{{ post.imageURL }}"></div>
     <mat-card-content>
         <div class="text">
-            {{post.text}}
+          <markdown [data]="post.text"></markdown>
         </div>
         <div class="bottom">
             <span>Date:</span> <br>
             <span>{{ post.date | date:'shortDate' }}</span>
-        </div>
+        </div>   
         <div>
-            {{post.imageURL}}
+          <mat-chip-list #tagList>
+              <mat-chip *ngFor="let tag of post.tags">
+                  {{tag}}
+              </mat-chip>
+          </mat-chip-list>
         </div>
-        <button class="back" mat-icon-button color="primary" >
-            <mat-icon class="icon" routerLink="/all-posts">keyboard_backspace</mat-icon></button>
-    </mat-card-content>
-   
+    </mat-card-content>  
 </mat-card>

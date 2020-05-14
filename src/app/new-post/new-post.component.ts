@@ -22,7 +22,7 @@ export class NewPostComponent implements OnInit {
   author: string;
   text: string;
   tags: string;
-  status = false;
+  status = true;
   imageUrl: string;
 
   visible = true;
@@ -45,7 +45,7 @@ export class NewPostComponent implements OnInit {
     ]),
     text: new FormControl(this.text, Validators.required),
     tags: new FormControl(this.tags),
-    imageUrl: new FormControl(this.imageUrl, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')),
+    imageUrl: new FormControl(this.imageUrl),
     status: new FormControl(this.status),
   });
 
@@ -71,7 +71,7 @@ export class NewPostComponent implements OnInit {
       this.postForm.controls.imageUrl.value
 
     );
-    console.log(post);
+    console.log(post, "bla bla");
 
     if (id) {
       post.id = id;
@@ -108,6 +108,7 @@ export class NewPostComponent implements OnInit {
 
   ngOnInit(): void {
     // localStorage.removeItem('posts');
+    console.log(this.postFormControl.status.value);
 
     const id = +this.route.snapshot.paramMap.get('id');
     if (id) {

@@ -22,6 +22,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { PostViewComponent } from './post-view/post-view.component';
 import {MatSelectModule} from '@angular/material/select';
+import { MarkdownModule } from 'ngx-markdown';
 
 
 
@@ -32,6 +33,7 @@ import {MatSelectModule} from '@angular/material/select';
     MostRecentComponent,
     AllPostsComponent,
     PostViewComponent
+
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatSlideToggleModule,
     MatListModule,
     MatCheckboxModule,
-    MatSelectModule
+    MatSelectModule,
+    MarkdownModule.forRoot(),
 
   ],
   providers: [],
