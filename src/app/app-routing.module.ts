@@ -7,6 +7,7 @@ import { AllPostsComponent } from './all-posts/all-posts.component';
 import { PostViewComponent } from './post-view/post-view.component';
 
 
+
 const routes: Routes = [
   { path: 'new-post', component: NewPostComponent },
   { path: 'edit/:id', component: NewPostComponent, resolve: { post: BlogResolverService } },

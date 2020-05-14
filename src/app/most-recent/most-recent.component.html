@@ -1,22 +1,41 @@
 <mat-card class="card">
-    <mat-card-content>
-      <div class="header">
-        <span class="link" routerLink="/new-post">New Post</span>
-        <span class="link" routerLink="/recent-posts">Most recent posts</span>
-        <span class="link" routerLink="/all-posts">All posts</span>
-      </div>
-    </mat-card-content>
-  </mat-card>
+  <mat-card-content>
+    <div class="header">
+      <span class="link" routerLink="/new-post">New Post</span>
+      <span class="link" routerLink="/recent-posts">Most recent posts</span>
+      <span class="link" routerLink="/all-posts">All posts</span>
+    </div>
+  </mat-card-content>
+</mat-card>
 <mat-card class="card">
-    <mat-card-title class="title">Recent Posts</mat-card-title>
-    <mat-card-content>
-        <div class="posts" *ngFor="let post of recentPosts" routerLink="/post/{{post.id}}">
-            <span >{{ post.title }}</span>
-            <span >{{ post.date }}</span>
-            <p>{{ post.text.substring(0,150) }}</p>
-        </div>
-        <br>
-        
-        
-    </mat-card-content>
+  <mat-card-title class="title">Recent Posts</mat-card-title>
+  <mat-card-content>
+
+    <mat-form-field>
+      <mat-label aria-placeholder="All">Status</mat-label>
+      
+      <mat-select>
+        <mat-option [value]=" filteredPosts" (click)="filterPosts('all')" >
+          All
+        </mat-option>
+        <mat-option  [value]=" filteredPosts" (click)="filterPosts('active')">
+          Active
+        </mat-option>
+        <mat-option [value]=" filteredPosts" (click)="filterPosts('inactive')">
+          Inactive
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="posts" *ngFor="let post of this.filteredPosts" routerLink="/post/{{post.id}}">
+      <span>Title: {{ post.title }}</span> <br>
+      <span>Date: {{ post.date | date:'shortDate' }}</span>
+      <p> Summary : {{ post.text.substring(0,150) }}</p>
+    </div>
+    <br>
+
+
+
+
+  </mat-card-content>
 </mat-card>

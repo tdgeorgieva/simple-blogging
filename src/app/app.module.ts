@@ -20,8 +20,8 @@ import { MostRecentComponent } from './most-recent/most-recent.component';
 import { AllPostsComponent } from './all-posts/all-posts.component';
 import { MatListModule } from '@angular/material/list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import {MatPaginatorModule} from '@angular/material/paginator';
 import { PostViewComponent } from './post-view/post-view.component';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -51,7 +51,7 @@ import { PostViewComponent } from './post-view/post-view.component';
     MatSlideToggleModule,
     MatListModule,
     MatCheckboxModule,
-    MatPaginatorModule
+    MatSelectModule
 
   ],
   providers: [],

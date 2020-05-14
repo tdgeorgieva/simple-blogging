@@ -16,7 +16,7 @@
         </div>
         <div class="bottom">
             <span>Date:</span> <br>
-            <span>{{ post.date }}</span>
+            <span>{{ post.date | date:'shortDate' }}</span>
         </div>
         <div>
             {{post.imageURL}}

@@ -22,7 +22,7 @@ export class NewPostComponent implements OnInit {
   author: string;
   text: string;
   tags: string;
-  status: boolean;
+  status = false;
   imageUrl: string;
 
   visible = true;
@@ -46,7 +46,7 @@ export class NewPostComponent implements OnInit {
     text: new FormControl(this.text, Validators.required),
     tags: new FormControl(this.tags),
     imageUrl: new FormControl(this.imageUrl, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')),
-    status: new FormControl({value: status, enabled: true}),
+    status: new FormControl(this.status),
   });
 
 
