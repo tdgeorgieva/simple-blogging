@@ -24,7 +24,6 @@ export class NewPostComponent implements OnInit {
   tags: string;
   status: boolean;
   imageUrl: string;
-  checked = true;
 
   visible = true;
   selectable = true;
@@ -47,7 +46,7 @@ export class NewPostComponent implements OnInit {
     text: new FormControl(this.text, Validators.required),
     tags: new FormControl(this.tags),
     imageUrl: new FormControl(this.imageUrl, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')),
-    status: new FormControl(this.status),
+    status: new FormControl({value: status, enabled: true}),
   });
 
 

@@ -1,4 +1,13 @@
 <mat-card class="card">
+    <mat-card-content>
+      <div class="header">
+        <span class="link" routerLink="/new-post">New Post</span>
+        <span class="link" routerLink="/recent-posts">Most recent posts</span>
+        <span class="link" routerLink="/all-posts">All posts</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+<mat-card class="card">
     <mat-card-title class="title">{{ post.title }}</mat-card-title>
     <mat-card-subtitle>{{ post.author }}</mat-card-subtitle>
     <mat-card-content>
@@ -6,12 +15,14 @@
             {{post.text}}
         </div>
         <div class="bottom">
-            
+            <span>Date:</span> <br>
             <span>{{ post.date }}</span>
         </div>
-    </mat-card-content>
-    <mat-card-actions>
-        <button mat-icon-button color="primary" >
+        <div>
+            {{post.imageURL}}
+        </div>
+        <button class="back" mat-icon-button color="primary" >
             <mat-icon class="icon" routerLink="/all-posts">keyboard_backspace</mat-icon></button>
-    </mat-card-actions>
+    </mat-card-content>
+   
 </mat-card>

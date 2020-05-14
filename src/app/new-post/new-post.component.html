@@ -1,4 +1,14 @@
 <mat-card class="card">
+    <mat-card-content>
+      <div class="header">
+        <span class="link" routerLink="/new-post">New Post</span>
+        <span class="link" routerLink="/recent-posts">Most recent posts</span>
+        <span class="link" routerLink="/all-posts">All posts</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  
+<mat-card class="card">
     <mat-card-title class="title">Add new post</mat-card-title>
     <mat-card-content>
         <div class="form">
@@ -83,13 +93,13 @@
                     </mat-error>
                 </div>
                 <br>
-                <mat-slide-toggle [checked]="checked" formControlName="status">
+                <mat-slide-toggle formControlName="status">
                     <mat-label  class="label">Status</mat-label>
                     (Active)
                 </mat-slide-toggle>
                 <br>
-                <button class="btn" mat-raised-button color="primary" [disabled]="!postForm.valid">Submit</button>
-                <button class="btn" mat-raised-button color="warn">Cancel</button>
+                <button class="btn" mat-raised-button [disabled]="!postForm.valid">Submit</button>
+                <button class="btn" mat-raised-button >Cancel</button>
 
             </form>
         </div>
@@ -99,7 +109,7 @@
     <mat-card-title class="title">New posts</mat-card-title>
     <mat-card-content>
          <ul class="list">
-            <li *ngFor="let post of this.posts"  routerLink="/post/{{post.id}}">
+            <li *ngFor="let post of this.posts" routerLink="/post/{{post.id}}">
                 {{ post.title }}
             </li>
         </ul>
