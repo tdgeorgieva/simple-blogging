@@ -10,7 +10,7 @@
 <mat-card class="card">
     <mat-card-title class="title">{{ post.title }}</mat-card-title>
     <mat-card-subtitle>{{ post.author }}</mat-card-subtitle>
-    <div> <img src="{{ post.imageURL }}"></div>
+    <div > <img class="img" src="{{ post.imageURL }}"></div>
     <mat-card-content>
         <div class="text">
           <markdown [data]="post.text"></markdown>

@@ -31,12 +31,13 @@ export class NewPostComponent implements OnInit {
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   tagWords: string[] = [];
+  isEdit = false;
 
   postForm = new FormGroup({
     date: new FormControl(this.date, Validators.required),
     title: new FormControl(this.title, [
       Validators.required,
-      Validators.maxLength(30),
+      Validators.maxLength(50),
       Validators.minLength(2)
     ]),
     author: new FormControl(this.author, [
@@ -71,10 +72,11 @@ export class NewPostComponent implements OnInit {
       this.postForm.controls.imageUrl.value
 
     );
-    console.log(post, "bla bla");
+    console.log(post, id);
 
     if (id) {
       post.id = id;
+      this.isEdit = true;
       this.blogService.update(post);
 
     } else {
