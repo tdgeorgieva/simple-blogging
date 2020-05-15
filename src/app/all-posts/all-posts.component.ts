@@ -7,6 +7,7 @@ import { BlogService } from '../blog.service';
   templateUrl: './all-posts.component.html',
   styleUrls: ['./all-posts.component.css']
 })
+
 export class AllPostsComponent implements OnInit {
 
   allPosts: string[] = this.blogService.findAll();

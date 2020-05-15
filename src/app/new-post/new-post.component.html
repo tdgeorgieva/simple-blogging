@@ -9,7 +9,7 @@
   </mat-card>
   
 <mat-card class="card">
-    <mat-card-title class="title"  > Add new form </mat-card-title>
+    <mat-card-title class="title" > Add new post </mat-card-title>
     <mat-card-content>
         <div class="form">
            
@@ -81,9 +81,7 @@
                             (matChipInputTokenEnd)="add($event)" formControlName="tags">
                     </mat-chip-list>
                 </mat-form-field>
-
                 <br>
-
                 <mat-form-field appearance="legacy">
                     <mat-label class="label">Image</mat-label>
                     <input matInput formControlName="imageUrl">
@@ -101,13 +99,11 @@
                 </mat-slide-toggle>
                 <br>
                 <button class="btn" mat-raised-button [disabled]="!postForm.valid">Submit</button>
-                <button class="btn" mat-raised-button >Cancel</button>
-
             </form>
         </div>
     </mat-card-content>
 </mat-card>
-<mat-card>
+<!-- <mat-card>
     <mat-card-title class="title">New posts</mat-card-title>
     <mat-card-content>
          <ul class="list">
@@ -116,4 +112,4 @@
             </li>
         </ul>
     </mat-card-content>
-</mat-card>
+</mat-card> -->

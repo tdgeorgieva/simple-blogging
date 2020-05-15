@@ -31,7 +31,6 @@ export class NewPostComponent implements OnInit {
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   tagWords: string[] = [];
-  isEdit = false;
 
   postForm = new FormGroup({
     date: new FormControl(this.date, Validators.required),
@@ -76,7 +75,6 @@ export class NewPostComponent implements OnInit {
 
     if (id) {
       post.id = id;
-      this.isEdit = true;
       this.blogService.update(post);
 
     } else {
