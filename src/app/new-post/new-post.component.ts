@@ -122,12 +122,12 @@ export class NewPostComponent implements OnInit {
       if (id) {
         this.route.data.subscribe(data => {
           this.post = data.post;
+          this.tagWords = this.post.tags;
           this.postForm.patchValue({
             date: this.post.date,
             title: this.post.title,
             author: this.post.author,
             text: this.post.text,
-            tags: this.post.tags,
             imageURL: this.post.imageURL,
             status: this.post.status
           });
