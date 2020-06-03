@@ -1,9 +1,9 @@
-export type IdType = number;
-export interface Identifiable {
-    id: IdType;
-}
-export class Post implements Identifiable {
-    id: IdType;
+// export type IdType = number;
+// export interface Identifiable {
+//     id: IdType;
+// }              implements Identifiable
+export class Post  {
+    _id: string;
     date: Date;
     title: string;
     author: string;

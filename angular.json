@@ -65,11 +65,13 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "simple-blogging:build"
+            "browserTarget": "simple-blogging:build",
+            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {
               "browserTarget": "simple-blogging:build:production"
+              
             }
           }
         },

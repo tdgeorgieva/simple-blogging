@@ -23,6 +23,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { PostViewComponent } from './post-view/post-view.component';
 import {MatSelectModule} from '@angular/material/select';
 import { MarkdownModule } from 'ngx-markdown';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -55,6 +56,7 @@ import { MarkdownModule } from 'ngx-markdown';
     MatCheckboxModule,
     MatSelectModule,
     MarkdownModule.forRoot(),
+    HttpClientModule
 
   ],
   providers: [],

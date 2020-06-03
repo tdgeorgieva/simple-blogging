@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from './../post.model';
 import { BlogService } from './../blog.service';
 import { Component, OnInit, Injectable } from '@angular/core';
@@ -14,8 +14,10 @@ import { MatChipInputEvent } from '@angular/material/chips';
 })
 
 export class NewPostComponent implements OnInit {
+  post: Post;
+  id: string;
 
-  constructor(private blogService: BlogService, private route: ActivatedRoute ) { }
+  constructor(private blogService: BlogService, private route: ActivatedRoute, private router: Router) { }
 
   title: string;
   date: string;
@@ -31,7 +33,6 @@ export class NewPostComponent implements OnInit {
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   tagWords: string[] = [];
-  isEdit = false;
 
   postForm = new FormGroup({
     date: new FormControl(this.date, Validators.required),
@@ -61,28 +62,32 @@ export class NewPostComponent implements OnInit {
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.warn(this.postForm.value);
-    const id = +this.route.snapshot.paramMap.get('id');
-    const post = new Post(
-      new Date(this.postForm.controls.date.value),
-      this.postForm.controls.title.value,
-      this.postForm.controls.author.value,
-      this.postForm.controls.text.value,
-      this.postForm.controls.status.value,
-      this.tagWords,
-      this.postForm.controls.imageUrl.value
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
+      const post = new Post(
+        new Date(this.postForm.controls.date.value),
+        this.postForm.controls.title.value,
+        this.postForm.controls.author.value,
+        this.postForm.controls.text.value,
+        this.postForm.controls.status.value,
+        this.tagWords,
+        this.postForm.controls.imageUrl.value
+      );
+      if (id) {
+        this.blogService.update(id, post).subscribe(res => {
+          res.headers.keys();
+          this.router.navigate([res.headers.get('location')]);
+        });
 
-    );
-    console.log(post, id);
+      } else {
+        this.blogService.create(post).subscribe(res => {
+          res.headers.keys();
+          this.router.navigate([res.headers.get('location')]);
+        });
+      }
+      console.log(post._id);
 
-    if (id) {
-      post.id = id;
-      this.isEdit = true;
-      this.blogService.update(post);
-
-    } else {
-      this.blogService.create(post);
-    }
-    console.log(post.id);
+    });
   }
 
 
@@ -112,20 +117,21 @@ export class NewPostComponent implements OnInit {
     // localStorage.removeItem('posts');
     console.log(this.postFormControl.status.value);
 
-    const id = +this.route.snapshot.paramMap.get('id');
-    if (id) {
-        const post = this.blogService.findById(id);
-        this.postForm.patchValue({
-          date: post.date,
-          title: post.title,
-          author: post.author,
-          text: post.text,
-          tags: post.tags,
-          imageURL: post.imageURL,
-          status: post.status
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
+      if (id) {
+        this.route.data.subscribe(data => {
+          this.post = data.post;
+          this.postForm.patchValue({
+            date: this.post.date,
+            title: this.post.title,
+            author: this.post.author,
+            text: this.post.text,
+            tags: this.post.tags,
+            imageURL: this.post.imageURL,
+            status: this.post.status
+          });
         });
-
-    }
+    }});
   }
-
 }

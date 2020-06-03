@@ -8,17 +8,15 @@
   </mat-card-content>
 </mat-card>
 <mat-card class="card">
-
-
   <mat-card-title class="title">All Posts</mat-card-title>
 
   <mat-card-content>
-    <div class="posts" *ngFor="let post of allPosts">
-      <span class="span" routerLink="/post/{{post.id}}">{{ post.title }}</span>
-      <button mat-icon-button color="primary" routerLink="/edit/{{post.id}}">
-        <mat-icon class="icon">edit</mat-icon>
+    <div class="posts" *ngFor="let post of posts">
+      <span class="span" routerLink="/post/{{post._id}}">{{ post.title }}</span>
+      <button mat-icon-button color="primary" routerLink="/edit/{{post._id}}" >
+        <mat-icon class="icon" >edit</mat-icon>        
       </button>
-      <button mat-icon-button color="primary" (click)="deletePost(post.id)">
+      <button mat-icon-button color="primary" (click)="deletePost(post._id)">
         <mat-icon class="icon">delete</mat-icon>
       </button>
       <br>

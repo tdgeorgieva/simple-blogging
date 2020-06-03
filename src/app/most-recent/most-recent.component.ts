@@ -9,28 +9,32 @@ import { Post } from '../post.model';
 })
 export class MostRecentComponent implements OnInit {
 
-  allPosts: Post[] = this.blogService.findAll();
   filteredPosts: Post[];
+  posts: Post[];
 
   constructor(private blogService: BlogService) { }
-
-  
-
   filterPosts(statusType: string) {
-    let posts = this.blogService.findAll()
-      .sort(function (a, b) { return new Date(b.date).getTime() - new Date(a.date).getTime() });
     if (statusType === 'active') {
-      posts = posts.filter(a => a.status === true);
-    } else if (statusType === 'inactive') {
-      posts = posts.filter(a => a.status === false);
+      this.filteredPosts =  this.posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .filter(a => a.status === true).slice(0, 15);
     }
-    this.filteredPosts = posts.slice(0, 15);
+    else if (statusType === 'inactive') {
+      this.filteredPosts =  this.posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .filter(a => a.status === false).slice(0, 15);
+    }
+    else {
+      this.filteredPosts =  this.posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .slice(0, 15);
+    }
   }
 
 
   ngOnInit(): void {
-    console.log(this.allPosts);
-    this.filteredPosts = this.allPosts;
+    console.log(this.posts);
+    this.blogService.findAll().subscribe(posts => {
+      this.posts = posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      this.filteredPosts = this.posts;
+    });
   }
 
 }

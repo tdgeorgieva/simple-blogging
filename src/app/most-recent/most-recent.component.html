@@ -27,7 +27,7 @@
       </mat-select>
     </mat-form-field>
 
-    <div class="posts" *ngFor="let post of this.filteredPosts" routerLink="/post/{{post.id}}">
+    <div class="posts" *ngFor="let post of this.filteredPosts" routerLink="/post/{{post._id}}">
       <h2>{{ post.title }}</h2> <br>
       <div><img class="img" src="{{ post.imageURL }}"> </div>
       <span>Date: {{ post.date | date:'shortDate' }}</span>

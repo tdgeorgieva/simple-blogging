@@ -9,7 +9,7 @@ export class BlogResolverService implements Resolve<any>{
 
   constructor(private blogService: BlogService) { }
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const id = +route.paramMap.get('id');
+    const id = route.paramMap.get('id');
     return this.blogService.findById(id);
 
 

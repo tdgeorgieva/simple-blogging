@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Post, IdType } from './../post.model';
+import { Post } from './../post.model';
 import { BlogService } from '../blog.service';
 
 @Component({
@@ -7,18 +7,22 @@ import { BlogService } from '../blog.service';
   templateUrl: './all-posts.component.html',
   styleUrls: ['./all-posts.component.css']
 })
+
 export class AllPostsComponent implements OnInit {
 
-  allPosts: string[] = this.blogService.findAll();
 
-  deletePost(id: IdType): void {
-    this.blogService.remove(id);
+  posts: Post[];
+  errorMessage: string;
+  deletePost(id: string): void {
+    console.log('delete');
+    this.blogService.remove(id).subscribe(() => this.blogService.findAll().subscribe(posts => this.posts = posts));
   }
-
 
   constructor(private blogService: BlogService) { }
 
   ngOnInit(): void {
+    this.blogService.findAll()
+        .subscribe(posts => this.posts = posts);
   }
 
 }
